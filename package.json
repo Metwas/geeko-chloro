@@ -1,0 +1,34 @@
+{
+       "name": "@geeko/chloro",
+       "version": "0.0.1",
+       "description": "Geeko leaf proxy/monitoring injectable framework",
+       "main": "./dist/main.js",
+       "scripts": {
+              "dev": "tsc -w",
+              "build": "npm run tsc:build",
+              "pub": "npm run app:build && npm publish --access=public",
+              "test": "echo \"Error: no test specified\" && exit 1",
+              "tsc:build": "node ./scripts/build/app.build.mjs -t tsc -o dist/ -e production",
+              "app:build": "node ./scripts/build/app.build.mjs -t ncc -o dist/ -e production"
+       },
+       "keywords": [
+              "WebSocket",
+              "Watchdog"
+       ],
+       "author": "Metwas",
+       "license": "MIT",
+       "repository": {
+              "url": "https://github.com/Metwas/geeko-chloro"
+       },
+       "devDependencies": {
+              "@types/node": "^20.16.5",
+              "@vercel/ncc": "^0.38.1",
+              "log-update": "^6.1.0",
+              "sisteransi": "^1.0.5",
+              "typescript": "^5.4.5"
+       },
+       "dependencies": {
+              "@geeko/serialization": "^0.1.4",
+              "tseep": "^1.2.2"
+       }
+}

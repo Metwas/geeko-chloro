@@ -1,0 +1,22 @@
+{
+       "compilerOptions": {
+              "module": "CommonJS",
+              "target": "ES2022",
+              "outDir": "dist",
+              "lib": [
+                     "DOM",
+                     "es2023"
+              ],
+              "removeComments": true,
+              "experimentalDecorators": true,
+              "resolveJsonModule": true,
+       },
+       "exclude": [
+              "node_modules",
+              "dist",
+              "build"
+       ],
+       "include": [
+              "src"
+       ],
+}
