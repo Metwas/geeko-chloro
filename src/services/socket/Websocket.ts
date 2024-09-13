@@ -24,7 +24,7 @@
 
 /**_-_-_-_-_-_-_-_-_-_-_-_-_- @Imports _-_-_-_-_-_-_-_-_-_-_-_-_-*/
 
-import { Spectra, ProtocolFrame, StackTokenPool, QueueManager, Serializable, JsonLike, JOB_COMPLETE_EVENT, JOB_FAIL_EVENT, Job } from "@geeko/serialization";
+import { Spectra, ProtocolFrame, StackTokenPool, QueueManager, Serializable, Ticket, JsonLike, JOB_COMPLETE_EVENT, JOB_FAIL_EVENT, Job } from "@geeko/serialization";
 import { WATCHDOG_DEFAULT_KICK_INTERVAL } from "../../global/watchdog.tokens";
 import { WebSocketWriteOptions } from "../../types/WebSocketWriteOptions";
 import { CHANNEL_RESPONSE_EVENT } from "../../global/socket.defaults";
@@ -35,7 +35,6 @@ import { createSocketId, getSocketId } from "./socket.id";
 import { getScriptIndentifier } from "../../tools/search";
 import { Connector } from "../../types/Connector";
 import { Endpoint } from "../../types/Endpoint";
-import { Ticket } from "../../types/Ticket";
 import { EventEmitter } from "tseep";
 
 /**_-_-_-_-_-_-_-_-_-_-_-_-_-          _-_-_-_-_-_-_-_-_-_-_-_-_-*/
