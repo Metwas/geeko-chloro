@@ -49,6 +49,6 @@ export const sleep = function (delay)
 {
        return new Promise((resolve, _) =>
        {
-              setTimeout(delay, resolve);
+              setTimeout(resolve, delay);
        })
 };
