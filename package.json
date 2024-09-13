@@ -24,6 +24,7 @@
               "@types/node": "^20.16.5",
               "@vercel/ncc": "^0.38.1",
               "log-update": "^6.1.0",
+              "minimist": "^1.2.8",
               "sisteransi": "^1.0.5",
               "typescript": "5.4.5"
        },
