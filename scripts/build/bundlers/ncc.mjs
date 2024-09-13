@@ -49,7 +49,7 @@ export const build = async (app, options, log) =>
                      assetBuilds: false,
                      target: 'es2015',
                      minify: true,
-                     quiet: false,
+                     quiet: true,
               });
 
               if (typeof result?.[ "code" ] === "string")
