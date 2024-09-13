@@ -3,7 +3,7 @@ name: Release-chloro
 on:
   push:
     tags:    
-      - 'release v*'
+      - 'v*.*.*'
 jobs:
   release:
     name: "Release"
