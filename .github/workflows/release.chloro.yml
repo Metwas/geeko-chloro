@@ -18,13 +18,13 @@ jobs:
         with:
           node-version: 22.x
       - name: Install dependencies
-        working-directory: /
+        working-directory: ./
         run: npm install
       - name: build
-        working-directory: /
+        working-directory: ./
         run: npm run --silent ncc:build
       - name: Compress build
-        working-directory: /
+        working-directory: ./
         run: gzip -c ./build/geeko-chloro.js > release.gz
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
