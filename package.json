@@ -1,6 +1,6 @@
 {
        "name": "@geeko/chloro",
-       "version": "0.1.2",
+       "version": "0.1.3",
        "description": "Geeko leaf proxy/monitoring injectable framework",
        "main": "./dist/main.js",
        "scripts": {
