@@ -25,8 +25,8 @@
 /**_-_-_-_-_-_-_-_-_-_-_-_-_- @Imports _-_-_-_-_-_-_-_-_-_-_-_-_-*/
 
 import { createLogUpdate } from "log-update";
-import { sleep } from "@aralia/utils";
 import { cursor } from "sisteransi";
+import { sleep } from "./time.mjs";
 import chalk from "chalk";
 
 /**_-_-_-_-_-_-_-_-_-_-_-_-_-          _-_-_-_-_-_-_-_-_-_-_-_-_-*/

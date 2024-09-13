@@ -37,3 +37,18 @@ export const getTimeString = function ()
 
        return `${hours}:${minutes}:${seconds}`
 };
+
+/**
+ * Await sleep timer
+ * 
+ * @public
+ * @param {Number} delay 
+ * @returns {Promise<void>}
+ */
+export const sleep = function (delay)
+{
+       return new Promise((resolve, _) =>
+       {
+              setTimeout(delay, resolve);
+       })
+};

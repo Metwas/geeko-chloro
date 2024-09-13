@@ -26,8 +26,8 @@
 
 import { getTimeString } from "../tools/time.mjs";
 import { error, ok } from "../tools/cli.mjs";
+import { sleep } from "../tools/time.mjs";
 import * as file from "../tools/file.mjs";
-import { sleep } from "@aralia/utils";
 import { resolve } from "node:path";
 import * as tsc from "./tsc.mjs";
 import * as ncc from "./ncc.mjs";
