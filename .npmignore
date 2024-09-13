@@ -3,6 +3,7 @@
 /scripts
 /environments
 /bin
+/build
 /assets
 /node_modules
 .cache
