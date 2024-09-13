@@ -22,14 +22,14 @@ jobs:
         run: npm install
       - name: build
         working-directory: /
-        run: npm run --silent web:build -- --app chloro -v
+        run: npm run --silent ncc:build
       - name: Compress build
         working-directory: /
         run: gzip -c ./build/geeko-chloro.js > release.gz
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           automatic_release_tag: "chloro"
-          files: packages/api/dist/web/chloro/release.gz
+          files: ./release.gz
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           title: "Chloro"
