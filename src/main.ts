@@ -30,20 +30,24 @@ import { Endpoint } from "./types/Endpoint";
 
 /**_-_-_-_-_-_-_-_-_-_-_-_-_-          _-_-_-_-_-_-_-_-_-_-_-_-_-*/
 
-/**
- * Injector scripts can identify the token to replace configuration properties
- * 
- * @public
- * @type {Endpoint}
- */
-const remote: Endpoint = {
-       url: "#URL"
-};
+/** Best to only initialize once DOM has loaded fully  */
+document.addEventListener( "DOMContentLoaded", () =>
+{
+       /**
+        * Injector scripts can identify the token to replace configuration properties
+        * 
+        * @public
+        * @type {Endpoint}
+        */
+       const remote: Endpoint = {
+              url: "#URL"
+       };
 
-const leaf: LeafPlugin = new LeafPlugin( {
-       name: "leaf",
-       version: "0.0.1"
+       const leaf: LeafPlugin = new LeafPlugin( {
+              name: "leaf",
+              version: "0.0.1"
+       } );
+
+       /** Autoconnect @see Endpoint */
+       leaf.connect( ( remote[ "url" ] !== "#URL" ? remote : DEFAULT_ENDPOINT ) );
 } );
-
-/** Autoconnect @see Endpoint */
-leaf.connect( ( remote[ "url" ] !== "#URL" ? remote : DEFAULT_ENDPOINT ) );
