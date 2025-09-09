@@ -24,7 +24,8 @@
 
 /**_-_-_-_-_-_-_-_-_-_-_-_-_- @Imports _-_-_-_-_-_-_-_-_-_-_-_-_-*/
 
-import { Spectra, ProtocolFrame, StackTokenPool, QueueManager, Serializable, Ticket, JsonLike, JOB_COMPLETE_EVENT, JOB_FAIL_EVENT, Job } from "@geeko/serialization";
+import { Spectra, ProtocolFrame, StackTokenPool, Serializable, Ticket, JsonLike } from "@geeko/serialization";
+import { JOB_COMPLETE_EVENT, JOB_FAIL_EVENT, Job, QueueManager } from "@geeko/tasks";
 import { WATCHDOG_DEFAULT_KICK_INTERVAL } from "../../global/watchdog.tokens";
 import { WebSocketWriteOptions } from "../../types/WebSocketWriteOptions";
 import { CHANNEL_RESPONSE_EVENT } from "../../global/socket.defaults";
@@ -46,6 +47,17 @@ import { EventEmitter } from "tseep";
  * @type {RegExp}
  */
 const PROTOCOL_PATH_REGEX: RegExp = /[:/]/g;
+
+/**
+ * Watchdog kick event object body
+ * 
+ * @public
+ * @type {Object}
+ */
+const WATCHDOG_KICK_EVENT_BODY: any = {
+       id: getScriptIndentifier(),
+       e: "kick",
+};
 
 /**
  * Default @see TXStreamHandler request timeout in milliseconds
@@ -78,23 +90,17 @@ export class WebsocketManager extends EventEmitter
 
               /** Initialize @see StackTokenPool */
               this._tokens = new StackTokenPool( options?.[ "maxTokenPool" ] );
+              /** Assign the default @see Spectra protocol */
+              this._protocol = options?.protocol ?? new Spectra();
 
               const watchdog: boolean | number = options?.[ "watchdog" ];
 
               if ( watchdog !== false )
               {
-                     if ( typeof options?.[ "watchdogKickEvent" ] === "string" )
-                     {
-                            this._watchdogKickEvent = options[ "watchdogKickEvent" ];
-                     }
-
                      const delay: number = ( typeof watchdog === "number" && watchdog > 0 ) ? watchdog : WATCHDOG_DEFAULT_KICK_INTERVAL;
                      /** Enable @see Watchdog feature */
                      this._watchdog( delay );
               }
-
-              /** Assign the default @see Spectra protocol */
-              this._protocol = options.protocol ?? new Spectra();
        }
 
        /**
@@ -111,14 +117,6 @@ export class WebsocketManager extends EventEmitter
         * @private
         */
        private _wInterval: any = -1;
-
-       /**
-        * Server-side kick event listener which gets serialized with the @see this._watchdogPayload
-        * 
-        * @private
-        * @type {String}
-        */
-       private _watchdogKickEvent: string = "watchdog_kick";
 
        /**
         * @see Watchdog serialized kick message for the current running @see Script
@@ -546,10 +544,7 @@ export class WebsocketManager extends EventEmitter
 
                      if ( !this._watchdogPayload )
                      {
-                            this._watchdogPayload = this._protocol.frame( {
-                                   event: this._watchdogKickEvent,
-                                   script: getScriptIndentifier()
-                            } );
+                            this._watchdogPayload = this._protocol.frame( WATCHDOG_KICK_EVENT_BODY );
                      }
 
                      /**
