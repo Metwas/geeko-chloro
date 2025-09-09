@@ -1,15 +1,15 @@
 {
        "compilerOptions": {
               "module": "CommonJS",
-              "target": "ES2022",
+              "target": "esnext",
               "outDir": "dist",
               "lib": [
-                     "DOM",
-                     "es2023"
+                     "ESNext",
+                     "DOM"
               ],
               "removeComments": true,
-              "experimentalDecorators": true,
-              "resolveJsonModule": true,
+              "experimentalDecorators": false,
+              "resolveJsonModule": false,
        },
        "exclude": [
               "node_modules",
@@ -17,6 +17,6 @@
               "build"
        ],
        "include": [
-              "src"
+              "src/**/*"
        ],
 }
