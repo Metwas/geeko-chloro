@@ -46,6 +46,11 @@ export const SCRIPT_KEY_TAG: string = "script";
  */
 export const getScriptIndentifier = (): string =>
 {
+       if ( window?.[ SCRIPT_KEY_TAG ] )
+       {
+              return window?.[ SCRIPT_KEY_TAG ];
+       }
+
        /** Attempt to get script from @see Window location */
        const href: string = window.location.href;
        const script: string = extractKeyFromUrl( href, SCRIPT_KEY_TAG );
