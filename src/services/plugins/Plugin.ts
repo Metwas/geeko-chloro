@@ -43,8 +43,8 @@ export abstract class Plugin
         */
        public constructor( options: PluginOptions )
        {
-              const name: string = options?.[ "name" ];
-              const version: string = options?.[ "version" ];
+              const name: string = options?.name;
+              const version: string = options?.version;
 
               if ( ( typeof name !== "string" || !name ) || ( typeof version !== "string" || !version ) )
               {
