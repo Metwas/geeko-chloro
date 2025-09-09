@@ -43,7 +43,7 @@ export const DEFAULT_REQUEST_TIMEOUT: number = 5000;
  * @type {Endpoint}
  */
 export const DEFAULT_ENDPOINT: Endpoint = {
-       url: `ws://127.0.0.1:3333`
+       url: `ws://127.0.0.1:3333/connect`
 };
 
 /**
