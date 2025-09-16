@@ -30,17 +30,26 @@ import { Endpoint } from "./types/Endpoint";
 
 /**_-_-_-_-_-_-_-_-_-_-_-_-_-          _-_-_-_-_-_-_-_-_-_-_-_-_-*/
 
-/** Best to only initialize once DOM has loaded fully  */
-document.addEventListener( "DOMContentLoaded", () =>
+/**
+ * Remote websocket URL
+ * 
+ * @public
+ * @type {String}
+ */
+const LEAF_WEBSOCKET_URL: string = "$URL";
+
+/**
+ * Autoconnect flag for the @see LeafPlugin websocket
+ * 
+ * @public
+ * @type {String}
+ */
+const WEBSOCKET_AUTO_CONNECT: string = "$AUTO_CONNECT";
+
+( (): void =>
 {
-       /**
-        * Injector scripts can identify the token to replace configuration properties
-        * 
-        * @public
-        * @type {Endpoint}
-        */
        const remote: Endpoint = {
-              url: "#URL"
+              url: LEAF_WEBSOCKET_URL
        };
 
        const leaf: LeafPlugin = new LeafPlugin( {
@@ -48,6 +57,9 @@ document.addEventListener( "DOMContentLoaded", () =>
               version: "0.0.1"
        } );
 
-       /** Autoconnect @see Endpoint */
-       leaf.connect( ( remote[ "url" ] !== "#URL" ? remote : DEFAULT_ENDPOINT ) );
-} );
+       if ( WEBSOCKET_AUTO_CONNECT === "1" || WEBSOCKET_AUTO_CONNECT === "$AUTO_CONNECT" )
+       {
+              /** Autoconnect @see Endpoint */
+              leaf.connect( ( remote[ "url" ] !== "$URL" ? remote : DEFAULT_ENDPOINT ) );
+       }
+} )();
